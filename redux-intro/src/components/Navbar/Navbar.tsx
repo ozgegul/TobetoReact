@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -7,10 +7,8 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const cartState = useSelector((state: any) => state.cart);
-  console.log(cartState);
 
   const authContext: any = useContext(AuthContext);
-  console.log(authContext);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -60,6 +58,18 @@ const Navbar = (props: Props) => {
                 </Link>
               </li>
             )}
+            <li className="nav-item">
+              <button
+                type="button"
+                className="btn btn-primary position-relative"
+              >
+                Cart
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {cartState.cartItems.length}
+                  <span className="visually-hidden"></span>
+                </span>
+              </button>
+            </li>
           </ul>
           <form className="d-flex" role="search">
             <input
