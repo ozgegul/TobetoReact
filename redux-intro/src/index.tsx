@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { store } from "./store/configureStore";
 import { Provider } from "react-redux";
+import "toastr/build/toastr.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

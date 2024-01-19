@@ -2,6 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { passwordRule } from "../../utils/validation/customValidationRules";
 import FormikInput from "../../components/FormikInput/FormikInput";
+import { useEffect } from "react";
+import toastr from "toastr";
+import ProductService from "../../services/productService";
+import AuthService from "../../services/AuthService";
 
 type Props = {};
 
@@ -13,6 +17,13 @@ interface ProductAddForm {
   colorId: number;
 }
 const ProductAdd = (props: Props) => {
+  useEffect(() => {
+    ProductService.getById(1).then((response) => {});
+    AuthService.login({ username: "kminchelle", password: "123" }).then(
+      (response) => console.log(response)
+    );
+  }, []);
+
   const initialValues: ProductAddForm = {
     title: "",
     description: "",
@@ -42,9 +53,7 @@ const ProductAdd = (props: Props) => {
       <Formik
         validationSchema={validationSchema}
         initialValues={initialValues}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={(values) => {}}
       >
         <Form>
           <FormikInput name="title" label="Ürün Adı" />
